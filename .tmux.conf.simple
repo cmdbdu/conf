@@ -1,0 +1,38 @@
+# set-option -g status-position top
+set-option -g status-utf8 on
+set-option -g base-index 1
+
+# Terminal emulator window title
+setw -g automatic-rename on
+set-option -g set-titles on
+set-option -g set-titles-string 'tmux: #W'
+
+# Status bar
+set-option -g status-justify centre
+set-option -g status-bg "yellow"
+set-option -g status-fg white
+set-option -g status-interval 5
+
+
+setw -g window-status-format "#[fg=green, bg=blue] #{pane_current_path}" 
+setw -g window-status-current-format "#[fg=black, bg=#a35b66]>>#[fg=#d5d5d5, bg=#a35b66] 【#{pane_current_path}】【#W】"
+set -g status-justify left
+set-option -g status-left '#[fg=blue,bg=black] ♥'
+set-option -g status-right '#[fg=red,bg=black] ♥ '
+
+set -g pane-border-fg black
+set -g pane-active-border-fg black
+set -g status-right "#[fg=red,bg=black]%Y.%m.%d #[fg=green,bg=black]%H:%M #[default]"
+
+#(shell-command)  First line of the command's output
+#[attributes]     Colour or attribute change
+#H                Hostname of local host
+#h                Hostname of local host without the domain name
+#F                Current window flag
+#I                Current window index
+#D                Current pane unique identifier
+#P                Current pane index
+#S                Session name
+#T                Current pane title
+#W                Current window name
+##                A literal ‘#’
