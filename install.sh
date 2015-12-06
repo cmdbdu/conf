@@ -9,8 +9,8 @@ check() {
                 echo "$tool was installed "
             else
                 echo "starting install $tool"
-                # sudo apt-get install $tool
-                echo "Install $tool"
+                # TODO Base On Diffrent System
+                sudo apt-get install $tool
             fi
     
         done
@@ -21,7 +21,7 @@ clone_private_dotfile() {
     if [ -d conf ];then
         echo "conf was cloned"
     else
-       # git clone http://github.com/cmdbdu/conf.git
+        git clone http://github.com/cmdbdu/conf.git
         echo "clone conf "
     fi
     }
@@ -31,11 +31,15 @@ install_neobundle() {
     echo "install neobundle"
     if [ -d ~/.vim/bundle ];then
         echo "dir was esxit"
+        if [ -f ~/.vim/bundle/neobundle.vim ];then
+            echo "~/.vim/bundle/neobundle.vim esxit"
+        else
+            git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+        fi
     else
         echo "mkdir ~/.vim/bundle"
-        #mkdir -p ~/.vim/bundle
+        mkdir -p ~/.vim/bundle
     fi
-    #git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
     
     } 
 
@@ -43,11 +47,16 @@ install_neobundle() {
 conf_vim() {
     echo "conf_vim"
     
-    if [ -d .vim ];then
+    if [ -d ~/.vim ];then
         echo ".vim esxit"
+	if [ -f ~/.vim/vimrc ];then
+            echo ".vim/vimrc esxit also"
+        else
+            cp ~/conf/vimrc .vim   
+        fi
     else
-       # mkdir .vim
-       # cp ~/conf/vimrc .vim   
+       mkdir ~/.vim
+       cp ~/conf/vimrc .vim   
        echo "cp ~/conf/vimrc .vim. "
     fi
 
@@ -60,7 +69,7 @@ conf_tmux() {
     if [ -f ~/.tmux.conf ];then
         echo "file was esxit"
     else
-       # cp ~/conf/.tmux.conf ~
+       cp ~/conf/.tmux.conf ~
        echo "cp ~/conf/.tmux.conf ~"
     fi
 
@@ -69,9 +78,9 @@ conf_tmux() {
 # 安装oh-my-zsh
 conf_zsh() {
     
-    #git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-    #cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
-    #chsh -s /bin/zsh
+    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+    chsh -s /bin/zsh
     
     echo 'zsh'
     }
