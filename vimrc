@@ -61,7 +61,6 @@ map <C-F3> \be
 
 syntax enable
 set background=dark
-colorscheme molokai
 
 " PYTHON 相关的设置
 "设置= + - * 前后自动空格
