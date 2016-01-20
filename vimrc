@@ -1,4 +1,3 @@
-filetype plugin indent on
 " Note: Skip initialization for vim-tiny or vim-small.
  if 0 | endif
 
@@ -18,6 +17,7 @@ filetype plugin indent on
  " Required:
  NeoBundleFetch 'Shougo/neobundle.vim'
  NeoBundle 'tomasr/molokai'
+ " NeoBundle 'chriskempson/tomorrow-theme'
  NeoBundle 'mattn/emmet-vim'
  NeoBundle 'bling/vim-airline'
  NeoBundle 'Shougo/neocomplete.vim'
@@ -29,6 +29,22 @@ filetype plugin indent on
 
  call neobundle#end()
 
+"语法高亮
+if has("syntax")
+  syntax on
+endif
+
+
+"开启类型插件支持(pyflakes)
+filetype on
+filetype plugin on
+
+if has("autocmd")
+  filetype plugin indent on
+endif
+
+
+
  " Required:
 
  " If there are uninstalled bundles found on startup,
@@ -36,6 +52,8 @@ filetype plugin indent on
 set nu
 set autoindent
 syntax on
+set list
+set listchars=tab:\|-,trail:=,extends:>,precedes:<
 set ruler
 set showcmd
 set ignorecase
@@ -61,6 +79,7 @@ map <C-F3> \be
 
 syntax enable
 set background=dark
+colorscheme default 
 
 " PYTHON 相关的设置
 "设置= + - * 前后自动空格
@@ -90,8 +109,9 @@ fun! SetTitle()
     if &filetype == 'sh'
         call setline(1,"#!/bin/bash")
     elseif &filetype == 'python'
-        call setline(1,"#coding:utf8")
-        "call setline(2,"#By:dub")
+        call setline(1,"#!/usr/bin/env python")
+        call setline(2,"# coding:utf8")
+        call setline(3,"# By:dub")
     endif
 endfun
 
