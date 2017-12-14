@@ -12,11 +12,9 @@ check() {
                 # TODO Base On Diffrent System
                 sudo apt-get install $tool
             fi
-    
         done
     }
 clone_private_dotfile() {
-    
     cd
     if [ -d conf ];then
         echo "conf was cloned"
@@ -40,13 +38,11 @@ install_neobundle() {
         echo "mkdir ~/.vim/bundle"
         mkdir -p ~/.vim/bundle
     fi
-    
     } 
 
 # 配置VIM
 conf_vim() {
     echo "conf_vim"
-    
     if [ -d ~/.vim ];then
         echo ".vim esxit"
 	if [ -f ~/.vim/vimrc ];then
@@ -77,14 +73,19 @@ conf_tmux() {
 
 # 安装oh-my-zsh
 conf_zsh() {
-    
     git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
     cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
     chsh -s /bin/zsh
-    
     echo 'zsh'
     }
-
+# 安装zsh需要字体
+conf_fonts() {
+    git clone https://github.com/powerline/fonts.git --depth=1
+    cd fonts
+    ./install.sh
+    cd ..
+    rm -fr fonts
+    }
 conf_tools() {
     check
     clone_private_dotfile
@@ -92,6 +93,7 @@ conf_tools() {
     conf_vim
     conf_tmux
     conf_zsh
+    conf_fonts
     }
 
 conf_tools
