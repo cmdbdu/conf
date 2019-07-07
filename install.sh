@@ -10,7 +10,7 @@ check() {
             else
                 echo "starting install $tool"
                 # TODO Base On Diffrent System
-                sudo apt-get install $tool
+                sudo apt-get install $tool -y
             fi
         done
     }
